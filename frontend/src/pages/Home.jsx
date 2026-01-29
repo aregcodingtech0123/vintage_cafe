@@ -177,7 +177,7 @@ const Home = () => {
             Customer Favorites
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="card-hover border-none overflow-hidden">
+            <Card className="card-hover border-none overflow-hidden bg-cream">
               <div className="h-64 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1529892485617-25f63cd7b1e9"
@@ -185,7 +185,7 @@ const Home = () => {
                   className="w-full h-full object-cover hover-zoom"
                 />
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-cream">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-seasons text-2xl text-charcoal">Nutella Latte</h3>
                   <Coffee className="w-5 h-5 text-warm-sage" />
@@ -195,7 +195,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none overflow-hidden">
+            <Card className="card-hover border-none overflow-hidden bg-cream">
               <div className="h-64 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1497636577773-f1231844b336"
@@ -203,7 +203,7 @@ const Home = () => {
                   className="w-full h-full object-cover hover-zoom"
                 />
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-cream">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-seasons text-2xl text-charcoal">Dirty Pumpkin Chai</h3>
                   <Coffee className="w-5 h-5 text-warm-sage" />
@@ -213,7 +213,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none overflow-hidden">
+            <Card className="card-hover border-none overflow-hidden bg-cream">
               <div className="h-64 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1623334044303-241021148842"
@@ -221,7 +221,7 @@ const Home = () => {
                   className="w-full h-full object-cover hover-zoom"
                 />
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-cream">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-seasons text-2xl text-charcoal">Apple Pie "Sharlotka"</h3>
                   <Heart className="w-5 h-5 text-warm-sage" />
@@ -231,7 +231,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none overflow-hidden">
+            <Card className="card-hover border-none overflow-hidden bg-cream">
               <div className="h-64 overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1609050471053-8636409f9f5b"
@@ -239,7 +239,7 @@ const Home = () => {
                   className="w-full h-full object-cover hover-zoom"
                 />
               </div>
-              <CardContent className="p-6">
+              <CardContent className="p-6 bg-cream">
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="font-seasons text-2xl text-charcoal">Vienna Melange</h3>
                   <Coffee className="w-5 h-5 text-warm-sage" />
