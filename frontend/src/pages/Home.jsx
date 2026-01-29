@@ -4,14 +4,12 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { useToast } from '../hooks/use-toast';
 import { toast as sonnerToast } from 'sonner';
 import axios from 'axios';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Home = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,26 +47,7 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-cream">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-soft-gray">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Coffee className="w-8 h-8 text-warm-sage" />
-              <span className="font-seasons text-2xl text-charcoal">Vintage Cafe</span>
-            </div>
-            <div className="hidden md:flex items-center space-x-8">
-              <button onClick={() => scrollToSection('about')} className="nav-link">About</button>
-              <button onClick={() => scrollToSection('menu')} className="nav-link">Menu</button>
-              <button onClick={() => scrollToSection('reviews')} className="nav-link">Reviews</button>
-              <button onClick={() => scrollToSection('visit')} className="nav-link">Visit</button>
-              <button onClick={() => scrollToSection('contact')} className="nav-link">Contact</button>
-            </div>
-          </div>
-        </nav>
-      </header>
-
+    <>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -511,33 +490,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-charcoal text-cream py-12">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center space-x-2">
-              <Coffee className="w-6 h-6 text-warm-sage" />
-              <span className="font-seasons text-xl">Vintage Cafe</span>
-            </div>
-            <p className="font-montserrat text-sm text-warm-gray">
-              © 2026 Vintage Cafe. Crafted with love, coffee, and community.
-            </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-warm-gray hover:text-warm-sage transition-colors duration-200">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-warm-gray hover:text-warm-sage transition-colors duration-200">
-                <Mail className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-warm-gray hover:text-warm-sage transition-colors duration-200">
-                <Phone className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 };
 

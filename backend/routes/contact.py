@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
 from motor.motor_asyncio import AsyncIOMotorDatabase
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import List
 import logging
 from bson import ObjectId
@@ -35,7 +35,7 @@ async def create_contact_submission(submission: ContactSubmissionCreate):
         
         # Prepare document for MongoDB
         submission_dict = submission.model_dump()
-        submission_dict["timestamp"] = datetime.utcnow()
+        submission_dict["timestamp"] = datetime.now(timezone.utc)
         submission_dict["status"] = "new"
         
         # Insert into database

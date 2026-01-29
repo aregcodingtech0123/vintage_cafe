@@ -1,29 +1,54 @@
-from fastapi import FastAPI, APIRouter
-from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+from contextlib import asynccontextmanager
+from pathlib import Path
 import os
 import logging
-from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
 from typing import List
 import uuid
 from datetime import datetime, timezone
 
-# Import contact routes
+from dotenv import load_dotenv
+from fastapi import FastAPI, APIRouter
+from motor.motor_asyncio import AsyncIOMotorClient
+from pydantic import BaseModel, ConfigDict, Field
+from starlette.middleware.cors import CORSMiddleware
+
 from routes import contact
 
-
 ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
+load_dotenv(ROOT_DIR / ".env")
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# Required environment variables for MongoDB Atlas
+MONGO_URI = os.getenv("MONGO_URI") or os.getenv("MONGO_URL")
+DB_NAME = os.getenv("DB_NAME")
+if not MONGO_URI or not DB_NAME:
+    raise ValueError(
+        "Missing required environment variables. Set MONGO_URI (or MONGO_URL) and DB_NAME in .env"
+    )
+
+# MongoDB connection (lazy; verified on startup)
+client = AsyncIOMotorClient(
+    MONGO_URI,
+    serverSelectionTimeoutMS=5000,
+    maxPoolSize=10,
+    minPoolSize=1,
+)
+db = client[DB_NAME]
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Verify MongoDB connection on startup; close client on shutdown."""
+    try:
+        await client.admin.command("ping")
+        logging.getLogger(__name__).info("MongoDB connection verified.")
+    except Exception as e:
+        logging.getLogger(__name__).error("MongoDB connection failed: %s", e)
+        raise
+    yield
+    client.close()
+
 
 # Create the main app without a prefix
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
@@ -72,27 +97,24 @@ async def get_status_checks():
     
     return status_checks
 
-# Include the router in the main app
-app.include_router(api_router)
-
-# Include contact routes
-api_router.include_router(contact.router, tags=["contact"])
-
+# CORS first (middleware runs in reverse order)
 app.add_middleware(
     CORSMiddleware,
     allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
+    allow_origins=os.environ.get("CORS_ORIGINS", "*").strip().split(","),
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Include contact routes in api_router before mounting (order matters)
+api_router.include_router(contact.router, tags=["contact"])
+
+# Include the router in the main app
+app.include_router(api_router)
+
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
-
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()

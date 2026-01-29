@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "mongodb": "^7.0.0",
+    "uvicorn": "^0.0.1-security"
+  }
+}
