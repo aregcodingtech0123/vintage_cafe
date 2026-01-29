@@ -415,7 +415,7 @@ const Home = () => {
             <p className="font-montserrat text-center text-warm-gray mb-12">
               Have questions or want to book for a private event? We'd love to hear from you!
             </p>
-            <Card className="border-none shadow-subtle">
+            <Card className="border-none shadow-subtle bg-cream">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
@@ -425,7 +425,7 @@ const Home = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       required
-                      className="border-warm-gray/30 focus:border-warm-sage"
+                      className="border-warm-gray/30 focus:border-warm-sage bg-white"
                       placeholder="John Doe"
                     />
                   </div>
@@ -436,7 +436,7 @@ const Home = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       required
-                      className="border-warm-gray/30 focus:border-warm-sage"
+                      className="border-warm-gray/30 focus:border-warm-sage bg-white"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -446,7 +446,7 @@ const Home = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({...formData, message: e.target.value})}
                       required
-                      className="border-warm-gray/30 focus:border-warm-sage min-h-[150px]"
+                      className="border-warm-gray/30 focus:border-warm-sage min-h-[150px] bg-white"
                       placeholder="Tell us how we can help..."
                     />
                   </div>
