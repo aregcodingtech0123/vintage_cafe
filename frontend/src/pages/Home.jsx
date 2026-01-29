@@ -266,7 +266,7 @@ const Home = () => {
             <span className="font-montserrat text-warm-gray ml-2">Rated 5 Stars for Atmosphere, Service & Quality</span>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Card className="border-none shadow-subtle p-8">
+            <Card className="border-none shadow-subtle p-8 bg-cream">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-warm-sage text-warm-sage" />
@@ -277,7 +277,7 @@ const Home = () => {
               </p>
               <p className="font-montserrat text-sm text-warm-gray">— Sarah M.</p>
             </Card>
-            <Card className="border-none shadow-subtle p-8">
+            <Card className="border-none shadow-subtle p-8 bg-cream">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-warm-sage text-warm-sage" />
@@ -288,7 +288,7 @@ const Home = () => {
               </p>
               <p className="font-montserrat text-sm text-warm-gray">— James L.</p>
             </Card>
-            <Card className="border-none shadow-subtle p-8">
+            <Card className="border-none shadow-subtle p-8 bg-cream">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-warm-sage text-warm-sage" />
