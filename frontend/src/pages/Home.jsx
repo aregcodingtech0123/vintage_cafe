@@ -5,7 +5,10 @@ import { Card, CardContent } from '../components/ui/card';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
 import { useToast } from '../hooks/use-toast';
-import { submitContactForm } from '../utils/mock';
+import { toast as sonnerToast } from 'sonner';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Home = () => {
   const { toast } = useToast();
@@ -21,17 +24,17 @@ const Home = () => {
     setIsSubmitting(true);
     
     try {
-      await submitContactForm(formData);
-      toast({
-        title: "Message Sent!",
+      const response = await axios.post(`${BACKEND_URL}/api/contact`, formData);
+      
+      sonnerToast.success('Message Sent!', {
         description: "We'll get back to you soon. Thanks for reaching out!",
       });
+      
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
-        variant: "destructive"
+      console.error('Contact form error:', error);
+      sonnerToast.error('Error', {
+        description: error.response?.data?.detail || "Something went wrong. Please try again.",
       });
     } finally {
       setIsSubmitting(false);
