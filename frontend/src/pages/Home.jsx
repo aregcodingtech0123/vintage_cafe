@@ -122,7 +122,7 @@ const Home = () => {
             Why People Love Vintage Cafe
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="card-hover border-none shadow-subtle">
+            <Card className="card-hover border-none shadow-subtle bg-cream">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-warm-sage/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Heart className="w-8 h-8 text-warm-sage" />
@@ -133,7 +133,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none shadow-subtle">
+            <Card className="card-hover border-none shadow-subtle bg-cream">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-warm-sage/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Coffee className="w-8 h-8 text-warm-sage" />
@@ -144,7 +144,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none shadow-subtle">
+            <Card className="card-hover border-none shadow-subtle bg-cream">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-warm-sage/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Heart className="w-8 h-8 text-warm-sage" />
@@ -155,7 +155,7 @@ const Home = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="card-hover border-none shadow-subtle">
+            <Card className="card-hover border-none shadow-subtle bg-cream">
               <CardContent className="p-8 text-center">
                 <div className="w-16 h-16 bg-warm-sage/10 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Leaf className="w-8 h-8 text-warm-sage" />
